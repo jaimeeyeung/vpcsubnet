@@ -1,8 +1,10 @@
 provider "aws" {
-region = "us-east-1"
+region = "us-east-2"
 }
+
+# creating a vpc  
 resource "aws_vpc" "main" {
-cidr_block       = "190.160.0.0/16"
+cidr_block       = "10.0.0.0/16"
 instance_tenancy = "default"
 
  tags = {
@@ -11,11 +13,12 @@ instance_tenancy = "default"
  }
 }
 
+# creating a subnet
 resource "aws_subnet" "subnet1" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "190.160.1.0/24"
+  cidr_block = "10.0.1.0/24"
 
   tags = {
-    Name = "Subnet1"
-}
+    Name = "subnet1"
+  }
 }
